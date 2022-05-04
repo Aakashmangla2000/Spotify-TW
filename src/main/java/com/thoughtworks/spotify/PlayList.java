@@ -5,11 +5,16 @@ import java.util.List;
 
 public class PlayList {
     List<Song> songs = new ArrayList<>();
+
     public void addSong(Song song) {
         songs.add(song);
     }
 
     public List<Song> songs() {
         return songs;
+    }
+
+    public void removeSong(Song song) {
+        songs.remove(song);
     }
 }
