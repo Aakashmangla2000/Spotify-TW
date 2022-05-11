@@ -7,6 +7,11 @@ import java.util.List;
 
 public class Playlist {
     List<Song> songs = new ArrayList<>();
+    boolean openPlaylist;
+
+    public Playlist(boolean open){
+        this.openPlaylist = open;
+    }
 
     public void addSong(Song song) {
         songs.add(song);

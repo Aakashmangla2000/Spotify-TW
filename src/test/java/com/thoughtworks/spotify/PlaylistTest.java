@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class PlaylistTest {
     @Test
     void canCreatePlaylist() {
-        Playlist Playlist = new Playlist();
+        Playlist Playlist = new Playlist(true);
 
         assertEquals(Playlist.class, Playlist.getClass());
     }
 
     @Test
     void canAddSongToPlaylist() {
-        Playlist Playlist = new Playlist();
+        Playlist Playlist = new Playlist(true);
         Song song = new Song();
         List<Song> expected = List.of(song);
         Playlist.addSong(song);
@@ -31,7 +31,7 @@ public class PlaylistTest {
     @Test
     void shouldNotBeAbleToRemoveSongWhichDoesNotExist() {
         assertThrows(SongDoesNotExistException.class, () -> {
-            Playlist Playlist = new Playlist();
+            Playlist Playlist = new Playlist(true);
             Song song = new Song();
             Playlist.removeSong(song);
         });
@@ -39,7 +39,7 @@ public class PlaylistTest {
 
     @Test
     void canDeleteSongFromPlaylist() throws SongDoesNotExistException {
-        Playlist Playlist = new Playlist();
+        Playlist Playlist = new Playlist(true);
         Song song = new Song();
         List<Song> expected = List.of();
         Playlist.addSong(song);
