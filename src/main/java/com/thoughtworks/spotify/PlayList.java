@@ -1,5 +1,7 @@
 package com.thoughtworks.spotify;
 
+import com.thoughtworks.exceptions.SongDoesNotExistException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,9 @@ public class PlayList {
         return songs;
     }
 
-    public void removeSong(Song song) {
-        songs.remove(song);
+    public void removeSong(Song song) throws SongDoesNotExistException {
+        if (songs.contains(song))
+            songs.remove(song);
+        else throw new SongDoesNotExistException("Song does not exist in playlist");
     }
 }

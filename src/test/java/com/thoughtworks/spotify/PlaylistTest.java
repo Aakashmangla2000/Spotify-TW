@@ -1,8 +1,8 @@
 package com.thoughtworks.spotify;
 
+import com.thoughtworks.exceptions.SongDoesNotExistException;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,7 +19,7 @@ public class PlaylistTest {
     void canAddSongToPlaylist() {
         PlayList playList = new PlayList();
         Song song = new Song();
-        List<Song> expected = Arrays.asList(song);
+        List<Song> expected = List.of(song);
         playList.addSong(song);
 
         List<Song> songs = playList.songs();
@@ -28,10 +28,10 @@ public class PlaylistTest {
     }
 
     @Test
-    void canDeleteSongFromPlaylist() {
+    void canDeleteSongFromPlaylist() throws SongDoesNotExistException {
         PlayList playList = new PlayList();
         Song song = new Song();
-        List<Song> expected = Arrays.asList();
+        List<Song> expected = List.of();
         playList.addSong(song);
         playList.removeSong(song);
 
