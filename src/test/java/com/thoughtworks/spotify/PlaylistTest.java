@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlaylistTest {
     @Test
@@ -25,6 +26,15 @@ public class PlaylistTest {
         List<Song> songs = playList.songs();
 
         assertEquals(expected, songs);
+    }
+
+    @Test
+    void shouldNotBeAbleToRemoveSongWhichDoesNotExist() {
+        assertThrows(SongDoesNotExistException.class, () -> {
+            PlayList playList = new PlayList();
+            Song song = new Song();
+            playList.removeSong(song);
+        });
     }
 
     @Test
