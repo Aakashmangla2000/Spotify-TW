@@ -2,6 +2,7 @@ package com.thoughtworks.spotify;
 
 import com.thoughtworks.exceptions.PlaylistAlreadySharedException;
 import com.thoughtworks.exceptions.PlaylistDoesNotExistException;
+import com.thoughtworks.exceptions.PlaylistIsNotOpenException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +37,9 @@ public class User {
 
     public boolean isSharedPlaylist(Playlist playlist) {
         return sharedPlaylists.contains(playlist);
+    }
+
+    public List<Song> viewPlaylist(Playlist playlist) throws PlaylistIsNotOpenException {
+        return playlist.viewPlaylist();
     }
 }
