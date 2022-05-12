@@ -35,4 +35,17 @@ public class UserTest {
 
         assertEquals(expected, songs);
     }
+
+    @Test
+    void userCanRateAPlaylist() throws SongAlreadyExistException {
+        User user1 = new User();
+        Playlist playlist1 = user1.createPlaylist(true);
+        Song song1 = new Song();
+        playlist1.addSong(song1);
+        double expected = 4.5;
+
+        double rating = user1.ratePlaylist(playlist1,4.5);
+
+        assertEquals(expected, rating);
+    }
 }

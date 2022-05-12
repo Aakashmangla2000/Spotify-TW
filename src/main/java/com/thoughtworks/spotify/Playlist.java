@@ -5,14 +5,17 @@ import com.thoughtworks.exceptions.SongAlreadyExistException;
 import com.thoughtworks.exceptions.SongDoesNotExistException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Playlist {
     List<Song> songs = new ArrayList<>();
     boolean openPlaylist;
+    HashMap<User, Double> ratings;
 
     public Playlist(boolean open) {
         this.openPlaylist = open;
+        this.ratings = new HashMap<>();
     }
 
     public void addSong(Song song) throws SongAlreadyExistException {
@@ -32,9 +35,18 @@ public class Playlist {
     }
 
     public List<Song> viewPlaylist() throws PlaylistIsNotOpenException {
-        if (openPlaylist == true)
+        if (openPlaylist)
             return songs;
         else
             throw new PlaylistIsNotOpenException("Playlist is private");
+    }
+
+    public double rate(User user, double rating) {
+        ratings.put(user, rating);
+        double sum = 0;
+        for (var entry : ratings.entrySet()) {
+            sum += entry.getValue();
+        }
+        return sum / ratings.size();
     }
 }

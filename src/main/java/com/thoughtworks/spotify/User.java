@@ -42,4 +42,8 @@ public class User {
     public List<Song> viewPlaylist(Playlist playlist) throws PlaylistIsNotOpenException {
         return playlist.viewPlaylist();
     }
+
+    public double ratePlaylist(Playlist playlist1, double rating) {
+        return playlist1.rate(this, rating);
+    }
 }
