@@ -3,6 +3,7 @@ package com.thoughtworks.spotify;
 import com.thoughtworks.exceptions.PlaylistAlreadySharedException;
 import com.thoughtworks.exceptions.PlaylistDoesNotExistException;
 import com.thoughtworks.exceptions.PlaylistIsNotOpenException;
+import com.thoughtworks.exceptions.SongAlreadyExistException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class UserTest {
     }
 
     @Test
-    void userCanViewAnOpenPlaylist() throws PlaylistIsNotOpenException {
+    void userCanViewAnOpenPlaylist() throws PlaylistIsNotOpenException, SongAlreadyExistException {
         User user1 = new User();
         User user2 = new User();
         Playlist playlist1 = user1.createPlaylist(true);

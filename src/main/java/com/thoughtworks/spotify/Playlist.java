@@ -1,6 +1,7 @@
 package com.thoughtworks.spotify;
 
 import com.thoughtworks.exceptions.PlaylistIsNotOpenException;
+import com.thoughtworks.exceptions.SongAlreadyExistException;
 import com.thoughtworks.exceptions.SongDoesNotExistException;
 
 import java.util.ArrayList;
@@ -14,8 +15,10 @@ public class Playlist {
         this.openPlaylist = open;
     }
 
-    public void addSong(Song song) {
-        songs.add(song);
+    public void addSong(Song song) throws SongAlreadyExistException {
+        if (!songs.contains(song))
+            songs.add(song);
+        else throw new SongAlreadyExistException("Song already added in playlist");
     }
 
     public List<Song> songs() {

@@ -1,5 +1,6 @@
 package com.thoughtworks.spotify;
 
+import com.thoughtworks.exceptions.SongAlreadyExistException;
 import com.thoughtworks.exceptions.SongDoesNotExistException;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,7 @@ public class PlaylistTest {
     }
 
     @Test
-    void canAddSongToPlaylist() {
+    void canAddSongToPlaylist() throws SongAlreadyExistException {
         Playlist Playlist = new Playlist(true);
         Song song = new Song();
         List<Song> expected = List.of(song);
@@ -38,7 +39,7 @@ public class PlaylistTest {
     }
 
     @Test
-    void canDeleteSongFromPlaylist() throws SongDoesNotExistException {
+    void canDeleteSongFromPlaylist() throws SongDoesNotExistException, SongAlreadyExistException {
         Playlist Playlist = new Playlist(true);
         Song song = new Song();
         List<Song> expected = List.of();
