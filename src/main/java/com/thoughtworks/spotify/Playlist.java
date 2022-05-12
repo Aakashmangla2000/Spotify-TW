@@ -42,7 +42,10 @@ public class Playlist {
     }
 
     public double rate(User user, double rating) {
-        ratings.put(user, rating);
+        if (ratings.containsKey(user))
+            ratings.replace(user, rating);
+        else
+            ratings.put(user, rating);
         double sum = 0;
         for (var entry : ratings.entrySet()) {
             sum += entry.getValue();
