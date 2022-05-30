@@ -25,6 +25,9 @@ A System designed for spotify without UI using Java.
 * Java
     - programming language for designing the system.
 
+### To Do
+* Read about serializable
+
 ### Installation
 First fork this repository, then clone it on you local machine.
 ```

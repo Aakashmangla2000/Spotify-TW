@@ -21,7 +21,7 @@ public class User {
     }
 
     public void sharePlaylist(User user, Playlist playlist) throws PlaylistDoesNotExistException, PlaylistAlreadySharedException {
-        if (this.playlists.contains(playlist) && !user.playlists.contains(playlist))
+        if (this.playlists.contains(playlist) && !user.sharedPlaylists.contains(playlist))
             user.addPlaylist(playlist);
         else if (!this.playlists.contains(playlist))
             throw new PlaylistDoesNotExistException("Playlist does not exist");

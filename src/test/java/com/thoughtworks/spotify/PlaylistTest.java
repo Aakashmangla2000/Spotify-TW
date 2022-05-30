@@ -10,12 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlaylistTest {
-    @Test
-    void canCreatePlaylist() {
-        Playlist Playlist = new Playlist(true);
-
-        assertEquals(Playlist.class, Playlist.getClass());
-    }
 
     @Test
     void canAddSongToPlaylist() throws SongAlreadyExistException {
