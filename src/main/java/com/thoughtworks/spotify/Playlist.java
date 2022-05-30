@@ -1,5 +1,6 @@
 package com.thoughtworks.spotify;
 
+import com.thoughtworks.exceptions.CannotEditPlaylistException;
 import com.thoughtworks.exceptions.PlaylistIsNotOpenException;
 import com.thoughtworks.exceptions.SongAlreadyExistException;
 import com.thoughtworks.exceptions.SongDoesNotExistException;
@@ -20,20 +21,26 @@ public class Playlist {
         this.ratings = new HashMap<>();
     }
 
-    public void addSong(Song song) throws SongAlreadyExistException {
-        if (!songs.contains(song))
-            songs.add(song);
-        else throw new SongAlreadyExistException("Song already added in playlist");
+    public void addSong(Song song, User user) throws SongAlreadyExistException, CannotEditPlaylistException {
+        if (this.user == user) {
+            if (!songs.contains(song))
+                songs.add(song);
+            else throw new SongAlreadyExistException("Song already added in playlist");
+        } else
+            throw new CannotEditPlaylistException("Cannot edit this playlist");
     }
 
     public List<Song> songs() {
         return songs;
     }
 
-    public void removeSong(Song song) throws SongDoesNotExistException {
-        if (songs.contains(song))
-            songs.remove(song);
-        else throw new SongDoesNotExistException("Song does not exist in playlist");
+    public void removeSong(Song song, User user) throws SongDoesNotExistException, CannotEditPlaylistException {
+        if (this.user == user) {
+            if (songs.contains(song))
+                songs.remove(song);
+            else throw new SongDoesNotExistException("Song does not exist in playlist");
+        } else
+            throw new CannotEditPlaylistException("Cannot edit this playlist");
     }
 
     public List<Song> viewPlaylist() throws PlaylistIsNotOpenException {
