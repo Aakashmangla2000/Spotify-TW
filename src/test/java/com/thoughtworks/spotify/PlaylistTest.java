@@ -13,7 +13,8 @@ public class PlaylistTest {
 
     @Test
     void canAddSongToPlaylist() throws SongAlreadyExistException {
-        Playlist Playlist = new Playlist(true);
+        User user = new User();
+        Playlist Playlist = new Playlist(true, user);
         Song song = new Song();
         List<Song> expected = List.of(song);
         Playlist.addSong(song);
@@ -26,7 +27,8 @@ public class PlaylistTest {
     @Test
     void shouldNotBeAbleToRemoveSongWhichDoesNotExist() {
         assertThrows(SongDoesNotExistException.class, () -> {
-            Playlist Playlist = new Playlist(true);
+            User user = new User();
+            Playlist Playlist = new Playlist(true, user);
             Song song = new Song();
             Playlist.removeSong(song);
         });
@@ -34,7 +36,8 @@ public class PlaylistTest {
 
     @Test
     void canDeleteSongFromPlaylist() throws SongDoesNotExistException, SongAlreadyExistException {
-        Playlist Playlist = new Playlist(true);
+        User user = new User();
+        Playlist Playlist = new Playlist(true, user);
         Song song = new Song();
         List<Song> expected = List.of();
         Playlist.addSong(song);

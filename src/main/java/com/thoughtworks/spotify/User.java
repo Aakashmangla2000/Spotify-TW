@@ -30,7 +30,7 @@ public class User {
     }
 
     public Playlist createPlaylist(boolean openPlaylist) {
-        Playlist playlist = new Playlist(openPlaylist);
+        Playlist playlist = new Playlist(openPlaylist, this);
         playlists.add(playlist);
         return playlist;
     }
@@ -45,5 +45,9 @@ public class User {
 
     public double ratePlaylist(Playlist playlist1, double rating) {
         return playlist1.rate(this, rating);
+    }
+
+    public List<Playlist> getMyPlaylists() {
+        return playlists;
     }
 }

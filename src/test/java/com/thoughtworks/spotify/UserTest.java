@@ -6,6 +6,7 @@ import com.thoughtworks.exceptions.PlaylistIsNotOpenException;
 import com.thoughtworks.exceptions.SongAlreadyExistException;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -44,8 +45,19 @@ public class UserTest {
         playlist1.addSong(song1);
         double expected = 4.5;
 
-        double rating = user1.ratePlaylist(playlist1,4.5);
+        double rating = user1.ratePlaylist(playlist1, 4.5);
 
         assertEquals(expected, rating);
+    }
+
+    @Test
+    void userCanIdentifyTheirOwnPlaylist() {
+        User user = new User();
+        Playlist playlist = user.createPlaylist(true);
+        List<Playlist> expected = List.of(playlist);
+
+        var result = user.getMyPlaylists();
+
+        assertEquals(expected, result);
     }
 }

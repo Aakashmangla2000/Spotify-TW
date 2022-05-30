@@ -12,8 +12,10 @@ public class Playlist {
     List<Song> songs = new ArrayList<>();
     boolean openPlaylist;
     HashMap<User, Double> ratings;
+    User user;
 
-    public Playlist(boolean open) {
+    public Playlist(boolean open, User user) {
+        this.user = user;
         this.openPlaylist = open;
         this.ratings = new HashMap<>();
     }
