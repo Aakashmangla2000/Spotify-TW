@@ -50,4 +50,11 @@ public class User {
     public List<Playlist> getMyPlaylists() {
         return playlists;
     }
+
+    public void deletePlaylist(Playlist playlist) throws PlaylistDoesNotExistException {
+        if(playlists.contains(playlist))
+            playlists.remove(playlist);
+        else
+            throw new PlaylistDoesNotExistException("Playlist does not exist");
+    }
 }

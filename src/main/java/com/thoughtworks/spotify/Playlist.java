@@ -54,4 +54,8 @@ public class Playlist {
         }
         return sum / ratings.size();
     }
+
+    public User createdBy() {
+        return user;
+    }
 }

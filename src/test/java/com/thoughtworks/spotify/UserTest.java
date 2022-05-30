@@ -6,7 +6,6 @@ import com.thoughtworks.exceptions.PlaylistIsNotOpenException;
 import com.thoughtworks.exceptions.SongAlreadyExistException;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -59,5 +58,27 @@ public class UserTest {
         var result = user.getMyPlaylists();
 
         assertEquals(expected, result);
+    }
+
+    @Test
+    void userCanIdentifyTheirOwnPlaylist2() {
+        User user = new User();
+        Playlist playlist = user.createPlaylist(true);
+
+        var result = playlist.createdBy();
+
+        assertEquals(user, result);
+    }
+
+    @Test
+    void userCanDeleteTheirOwnPlaylist() throws PlaylistDoesNotExistException {
+        User user = new User();
+        Playlist playlist = user.createPlaylist(true);
+        user.deletePlaylist(playlist);
+        List<Playlist> playlists = List.of();
+
+        var result = user.getMyPlaylists();
+
+        assertEquals(playlists, result);
     }
 }
