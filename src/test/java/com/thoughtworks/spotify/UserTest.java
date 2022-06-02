@@ -35,7 +35,7 @@ public class UserTest {
     }
 
     @Test
-    void userCanRateAPlaylist() throws SongAlreadyExistException, CannotEditPlaylistException {
+    void userCanRateAPlaylist() throws SongAlreadyExistException, CannotEditPlaylistException, PlaylistIsNotOpenException {
         User user1 = new User();
         Playlist playlist1 = user1.createPlaylist(true);
         Song song1 = new Song();
@@ -87,7 +87,7 @@ public class UserTest {
             User user2 = new User();
             Playlist playlist = user1.createPlaylist(true);
             Song song = new Song();
-            playlist.addSong(song,user2);
+            playlist.addSong(song, user2);
         });
     }
 }

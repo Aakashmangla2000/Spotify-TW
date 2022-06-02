@@ -43,7 +43,7 @@ public class User {
         return playlist.viewPlaylist();
     }
 
-    public double ratePlaylist(Playlist playlist1, double rating) {
+    public double ratePlaylist(Playlist playlist1, double rating) throws PlaylistIsNotOpenException {
         return playlist1.rate(this, rating);
     }
 
@@ -52,7 +52,7 @@ public class User {
     }
 
     public void deletePlaylist(Playlist playlist) throws PlaylistDoesNotExistException {
-        if(playlists.contains(playlist))
+        if (playlists.contains(playlist))
             playlists.remove(playlist);
         else
             throw new PlaylistDoesNotExistException("Playlist does not exist");

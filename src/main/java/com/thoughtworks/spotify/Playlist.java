@@ -30,8 +30,11 @@ public class Playlist {
             throw new CannotEditPlaylistException("Cannot edit this playlist");
     }
 
-    public List<Song> songs() {
-        return songs;
+    public List<Song> songs() throws PlaylistIsNotOpenException {
+        if (openPlaylist)
+            return songs;
+        else
+            throw new PlaylistIsNotOpenException("Playlist is private");
     }
 
     public void removeSong(Song song, User user) throws SongDoesNotExistException, CannotEditPlaylistException {
@@ -50,16 +53,19 @@ public class Playlist {
             throw new PlaylistIsNotOpenException("Playlist is private");
     }
 
-    public double rate(User user, double rating) {
-        if (ratings.containsKey(user))
-            ratings.replace(user, rating);
-        else
-            ratings.put(user, rating);
-        double sum = 0;
-        for (var entry : ratings.entrySet()) {
-            sum += entry.getValue();
-        }
-        return sum / ratings.size();
+    public double rate(User user, double rating) throws PlaylistIsNotOpenException {
+        if (openPlaylist) {
+            if (ratings.containsKey(user))
+                ratings.replace(user, rating);
+            else
+                ratings.put(user, rating);
+            double sum = 0;
+            for (var entry : ratings.entrySet()) {
+                sum += entry.getValue();
+            }
+            return sum / ratings.size();
+        } else
+            throw new PlaylistIsNotOpenException("Playlist is private");
     }
 
     public User createdBy() {
